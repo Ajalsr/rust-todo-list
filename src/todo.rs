@@ -91,11 +91,10 @@ pub async fn rm(conn: &str, val: &[String])
         if count.0 > 0{
             let qry = "DELETE FROM todo WHERE id = $1";
     //println!("{qry}");
-            for value in val {
                 let result = sqlx::query(&qry).bind(value).execute(&instances).await;
                 println!("{:?}", result);
                 println!("The requested ID: {} is removed !!!",value);
-            }
+            
         }
         else {
             println!("The requested ID = {} does not exist, Please provide existing ID.",value);
